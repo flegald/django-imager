@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>Welcome To Imager</h1>
+{% endblock %}
+
+{% block content %}
+<img src="{{ img }}"/>
+<h2>Please Login</h2>
+<a href='/login/'>Login</a>
+
+<h2>Or Sign Up</h2>
+<a href='/register/'>Register</a>
+{% endblock %}
