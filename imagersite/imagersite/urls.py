@@ -16,11 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from .views import home_page, register_page
+from .views import home_page, register_page, create_new_album
+# from ..imager_images.views import create_new_album
+# out of toplevel package issue
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name='home_page'),
-    url(r'^register/$', register_page, name='register_page')
+    url(r'^register/$', register_page, name='register_page'),
+    url(r'^newalbum/$', create_new_album, name='newalbum')
     # url(r'^login', login_view, name='login'),
 ]

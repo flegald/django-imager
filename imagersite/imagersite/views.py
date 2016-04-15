@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.shortcuts import render
+from django import forms
+# from .models import PUB_CHOICE
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render, render_to_response, redirect
@@ -40,6 +43,27 @@ def register_page(request):
         return render(request, 'register.html', context={
             'sign_up_form': sign_up_form
         })
+
+
+PUB_CHOICE = [('Private', 'Private'),
+              ('Shared', 'Shared'),
+              ('Public', 'Public')]
+
+
+class NewAlbumForm(forms.Form):
+    title = forms.CharField(label='Title', initial='untitled')
+    description = forms.CharField(widget=forms.Textarea(), label='Description')
+    privacy = forms.ChoiceField(widget=forms.RadioSelect(),
+                                label='Privacy',
+                                choices=PUB_CHOICE,
+                                initial='Public')
+
+
+def create_new_album(request):
+    new_album_form = NewAlbumForm()
+    return render(request, 'newalbum.html', context={
+        'new_album_form': new_album_form
+    })
 # def log_in(request):
 #     username = request.POST['username']
 #     password = request.POST['password']
