@@ -22,10 +22,8 @@ def home_page(request):
     except IndexError:
         img = 'http://orig14.deviantart.net/38de/f/2014/003/c/5/work_harder_comrade__by_pallanoph-d5kk9qt.jpg'
 
-    log_in_form = AuthenticationForm()
     name = request.user.username
     return render(request, 'home.html', context={
         'img': img,
-        'login': log_in_form,
         'name': name
     })
