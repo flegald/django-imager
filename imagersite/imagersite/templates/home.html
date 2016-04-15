@@ -1,19 +1,13 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>Welcome To Imager</h1>
+{% block title %}
+<p>Imager Home</p>
 {% endblock %}
 
 {% block content %}
+<h1>Welcome To Imager Comrade {{ name }}!</h1>
 
-<img src="{{img}}"/>
-<h2>Please Login</h2>
-<form action="/" method="post">
-    {% csrf_token %}
-    {{ login }}
-    <input type="submit" value="Submit" />
-</form>
+<img src="{{img}}" width=300px/>
 
-<a href="/register">Register</a>
 
 {% endblock %}
