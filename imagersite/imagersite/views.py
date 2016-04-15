@@ -9,9 +9,8 @@ from django.shortcuts import render, render_to_response, redirect
 from django.views.generic import TemplateView
 from registration.forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
-from imager_images.models import Photo
+from imager_images.models import Photo, Album
 from django.contrib.auth.models import User
-
 
 
 def home_page(request):
@@ -64,16 +63,7 @@ def create_new_album(request):
     return render(request, 'newalbum.html', context={
         'new_album_form': new_album_form
     })
-# def log_in(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(username=username, password=password)
-#     if user is not None:
-#         if user.is_active:
-#             login(request, user)
-#             # Redirect to a success page.
-#         else:
-#             # Return a 'disabled account' error message
-#             ...
-#     else:
-#         # Return an 'invalid login' error message.
+
+
+# def album_display(request):
+#     albums = Album.add

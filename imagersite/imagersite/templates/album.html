@@ -6,11 +6,12 @@
 
 {% block content %}
 
-<h2>New Album</h2>
-<form action="/images/album/" method="post">
+<img src="{{img}}"/>
+<h2>Please Login</h2>
+<form action="/" method="post">
     {% csrf_token %}
-    {{ new_album_form }}
-    <input type="submit" value="Create" />
+    {{ login }}
+    <input type="submit" value="Submit" />
 </form>
 
 {% endblock %}
