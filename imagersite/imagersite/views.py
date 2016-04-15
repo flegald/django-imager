@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm, ProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+import settings
 
 import os
 
@@ -23,12 +24,11 @@ def register_page(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
-            new_user.set_password(new_user.set_password)
-            user = User.objects.get(email=new_user.email)
-            import pdb; pdb.set_trace()
-            login(request, user)
-            return redirect('/registerdetail/')
+            new_user = User.objects.create_user(username=form.data['username'], email=form.data['email'], password=form.data['csrfmiddlewaretoken'],)
+            new_user.save()
+            new_user.backend = 'django.contrib.auth.backends.ModelBackend'
+            login(request, new_user)
+            return redirect('/registerdetail')
     else:
         form = UserForm()
     return render(request, 'register.html', context={'form': form})
@@ -39,8 +39,12 @@ def detail_register_page(request):
     if request.method == "POST":
         form = ProfileForm(request.POST)
         if form.is_valid():
+            user = request.user.profile
+            user.location = form.data['location']
+            user.bio = form.data['bio']
+            user.camera = form.data['camera']
+            import pdb; pdb.set_trace()
             return redirect('/')
     else:
         form = ProfileForm()
-    import pdb; pdb.set_trace()
     return render(request, 'registerdetail.html', context={'form': form})
