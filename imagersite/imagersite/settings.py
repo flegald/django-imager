@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djangoimager',
+        'NAME':'djangoimager',
     }
 }
 
