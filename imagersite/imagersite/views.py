@@ -64,6 +64,7 @@ def create_new_album(request):
         'new_album_form': new_album_form
     })
 
+def create_new_photo(request):
 
 # def album_display(request):
 #     albums = Album.add
