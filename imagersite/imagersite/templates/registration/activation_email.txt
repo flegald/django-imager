@@ -1,0 +1,9 @@
+Good day comrade. Prepare for sharing your many photos for motherland.
+
+Click link below for validate of service:
+{{site}}/accounts/activate/{{activation_key}}/.
+
+If failure to validation in {{expiration_days}} days, service will be no longer available and loyalty will be questioned. 
+
+-Gratitude is a sickness suffered by dogs.
+    Work harder comrade
