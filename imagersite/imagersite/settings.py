@@ -12,23 +12,16 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ebsi0224m&dps8j01i%rc^(6_g($)2r@ji&onnz_(m=1j-23g%'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -81,7 +74,7 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djangoimager',
+        'NAME':'djangoimager',
     }
 }
 
@@ -119,8 +112,17 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+ALLOWED_HOSTS = []
+
+# Registration limit
+ACCOUNT_ACTIVATION_DAYS = 7
+
+# Email Services
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Login Redirect
+LOGIN_REDIRECT_URL = '/'
+

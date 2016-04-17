@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<<<<<<< HEAD
 {% block header %}
 <h1>Welcome To Imager</h1>
 {% endblock %}
@@ -11,4 +12,16 @@
 
 <h2>Or Sign Up</h2>
 <a href='/register/'>Register</a>
+=======
+{% block title %}
+<p>Imager Home</p>
+{% endblock %}
+
+{% block content %}
+<h1>Welcome To Imager Comrade {{ name }}!</h1>
+
+<img src="{{img}}" width=300px/>
+
+
+>>>>>>> b42a3fab79fc330db9e13f4581d731039b8eda46
 {% endblock %}

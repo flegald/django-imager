@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,4 +26,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
+=======
+ <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title></title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   {% block css %}
+   {% endblock %}
+   <title>
+      {% block title %}
+      {% endblock %}
+   </title>
+
+ </head>
+ <body>
+ <header>
+    {% if user.is_authenticated %}
+
+    {{ user.username }} | <a href="/accounts/logout/">Log Out</a>
+
+    {% else %}
+
+    <a href="/accounts/login/">Log In</a>
+
+    {% endif %}
+
+    <a href='/'>| Home</a>
+ </header>
+
+ <article id='main'>
+   {% block content %}
+   {% endblock %}
+ </article>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ </body>
+>>>>>>> b42a3fab79fc330db9e13f4581d731039b8eda46
 </html>
