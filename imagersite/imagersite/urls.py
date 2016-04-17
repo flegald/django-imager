@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import home_page
+from .views import home_page, profile_view, library
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name='home_page'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/profile', profile_view, name='profile_view'),
+    url(r'^images/library', library, name='library')
     # url(r'^login', login_view, name='login'),
 ]

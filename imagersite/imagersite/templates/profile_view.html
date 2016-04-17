@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-2">
+      <img src='{{ img }}' height='300px'/>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-4">
+<ul>
+    <li>Total Photos: {{ image_count }}</li>
+    <li>Total Albums: {{ album_count }}</li>
+</ul>
+</div>
+  <div class="col-md-3"></div>
+</div>
+    <a href="{% url 'library' %}">Library</a>
+</div>
+{% endblock %}
