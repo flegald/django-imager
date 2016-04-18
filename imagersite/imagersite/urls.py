@@ -16,9 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView, DetailView
-
-
 from .views import home_page, profile_view
+from imager_images.models import Album, Photo
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,8 +27,9 @@ urlpatterns = [
     url(r'^accounts/profile', profile_view, name='profile_view'),
     url(r'^images/library/$', TemplateView.as_view(template_name="library.html")),
 
-   url(r'^images/album/(?P<pk>[0-9]+)/$',
+    url(r'^images/album/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=Album, template_name="album.html")),
     url(r'^images/photo/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=Photo, template_name="photo.html")),
     ]
+

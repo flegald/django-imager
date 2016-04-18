@@ -46,5 +46,12 @@ def profile_view(request):
         image_count = len(request.user.photos.all())
         album_count = len(request.user.albums.all())
         return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
-    else:
-        return redirect('login')
+
+
+def library(request):
+    albums = []
+    for album in request.user.albums.all():
+        albums.append(album.cover.url[1:])
+    return render(request, 'images/library.html', context={'albums': albums})
+
+
