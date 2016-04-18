@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'imager_profile.apps.ImagerProfileConfig',
-    'imager_images'
+    'imager_images',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,5 +125,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Login Redirect
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/accounts/profile'
 

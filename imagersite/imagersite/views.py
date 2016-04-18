@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login
 from registration.backends.hmac.views import RegistrationView
 
 from django.contrib.auth.forms import AuthenticationForm
-from imager_images.models import Photo
+from imager_images.models import Photo, Album
 from django.contrib.auth.models import User
 
 
@@ -27,3 +27,24 @@ def home_page(request):
         'img': img,
         'name': name
     })
+
+
+# def library(request):
+#     """Set up library view."""
+#     albums = []
+#     try:
+#         for album in request.user.albums.all():
+#             albums.append(album.cover.url[1:])
+#     except:
+#         albums = "You have no albums."
+#     return render(request, 'library.html', context={'albums': albums})
+
+
+def profile_view(request):
+    """Set up profile view."""
+    if request.user.is_authenticated():
+        image_count = len(request.user.photos.all())
+        album_count = len(request.user.albums.all())
+        return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
+    else:
+        return redirect('login')

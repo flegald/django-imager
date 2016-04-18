@@ -20,14 +20,16 @@
     {% if user.is_authenticated %}
 
     {{ user.username }} | <a href="/accounts/logout/">Log Out</a>
+    <a href='/accounts/profile'>| Home</a>
 
     {% else %}
 
     <a href="/accounts/login/">Log In</a>
+    <a href = 'accounts/register'> | Register</a>
+    <a href = '/'> | Home</a>
 
     {% endif %}
 
-    <a href='/'>| Home</a>
  </header>
 
  <article id='main'>

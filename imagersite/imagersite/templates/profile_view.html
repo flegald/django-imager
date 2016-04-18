@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-4">
+<h2>Welcome {{user.username}}!</h2>
+<ul>
+    <li>Name: {{user.firstname}} {{user.lastname}}</li>
+    <li>Location: {{user.location}}</li>
+    <li>Camera: {{user.camera_type}}</li>
+    <li>Photos Uploaded: {{user.photos.count}}
+    <li>Albums Created: {{user.albums.count}}
+</ul>
+</div>
+  <div class="col-md-3"></div>
+</div>
+    <a href="/images/library">Library</a>
+</div>
+{% endblock %}
