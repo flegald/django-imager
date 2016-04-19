@@ -27,21 +27,20 @@ def home_page(request):
     })
 
 
-def register_page(request):
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(username=form.data['username'], email=form.data['email'], password=form.data['csrfmiddlewaretoken'],)
-            new_user.save()
-            new_user.backend = 'django.contrib.auth.backends.ModelBackend'
-            login(request, new_user)
-            import pdb; pdb.set_trace()
-            return redirect('/')
-    else:
-        sign_up_form = RegistrationForm()
-        return render(request, 'register.html', context={
-            'sign_up_form': sign_up_form
-        })
+def profile_view(request):
+    """Set up profile view."""
+    if request.user.is_authenticated():
+        image_count = len(request.user.photos.all())
+        album_count = len(request.user.albums.all())
+        return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
+
+
+def library(request):
+    """Set up librabry view."""
+    photos = []
+    for photo in request.user.photos.all():
+        photos.append(photo.img_file)
+    return render(request, 'library.html', context={'photos': photos})
 
 
 PUB_CHOICE = [('Private', 'Private'),
@@ -64,7 +63,18 @@ def create_new_album(request):
         'new_album_form': new_album_form
     })
 
-def create_new_photo(request):
 
-# def album_display(request):
-#     albums = Album.add
+class NewPhotoForm(forms.Form):
+    title = forms.CharField(label='Title', initial='untitled')
+    description = forms.CharField(widget=forms.Textarea(), label='Description')
+    privacy = forms.ChoiceField(widget=forms.RadioSelect(),
+                                label='Privacy',
+                                choices=PUB_CHOICE,
+                                initial='Public')
+
+
+def upload_new_photo(request):
+    new_photo_form = NewPhotoForm()
+    return render(request, 'newphoto.html', context={
+        'new_photo_form': new_photo_form
+    })

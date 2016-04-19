@@ -8,4 +8,4 @@ class ImagerProfileConfig(AppConfig):
 
     def ready(self):
         """Have handler listen."""
-        import handler
+        from imager_profile import handler
