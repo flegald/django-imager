@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 from .settings import MEDIA_ROOT
 import os
 from django.contrib.auth.decorators import login_required
-from .form import NewAlbumForm, NewPhotoForm
+from .form import NewAlbumForm, NewPhotoForm, EditProfileForm, EditUserForm
 
 
 def home_page(request):
@@ -79,10 +79,24 @@ def upload_new_photo(request):
         })
     elif request.method == 'POST':
         new_photo = NewPhotoForm(request.POST, request.FILES)
-
         # new_photo.clean()
         photo = Photo(title=new_photo.data['title'], description=new_photo.data['description'], img_file=request.FILES['img_file'])
         photo.save()
         request.user.photos.add(photo)
         return redirect('/images/library/')
 
+
+@login_required(redirect_field_name='/')
+def edit_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        prof = EditProfileForm(request.POST)
+        usr = EditUserForm(request.POST)
+        user.profile.camera = prof['camera']
+        user.save()
+
+        return redirect("/accounts/profile")
+    elif request.method == 'GET':
+        profile_edit = EditProfileForm()
+        user_edit = EditUserForm()
+        return render(request, 'profile_edit.html', context={'profile_edit':profile_edit, 'user_edit': user_edit})

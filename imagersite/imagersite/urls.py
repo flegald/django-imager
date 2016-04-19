@@ -19,7 +19,7 @@ from .views import home_page, profile_view, library
 from imager_images.models import Album, Photo
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home_page, profile_view, library, create_new_album, upload_new_photo
+from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album
 from django.contrib import admin
@@ -39,7 +39,8 @@ urlpatterns = [
     url(r'^images/photo/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=Photo, template_name="detail_photo.html")),
     url(r'^images/album/add/$', create_new_album, name='newalbum'),
-    url(r'^images/photos/add/$', upload_new_photo, name='newphoto')
+    url(r'^images/photos/add/$', upload_new_photo, name='newphoto'),
+    url(r'^profile/edit/$', edit_profile, name='profile_edit')
 ]
 
 
