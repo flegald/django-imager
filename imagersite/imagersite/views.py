@@ -9,12 +9,13 @@ from django.views.generic import TemplateView
 from registration.forms import RegistrationForm
 from django.contrib.auth import authenticate, login
 from registration.backends.hmac.views import RegistrationView
-
+from .settings import MEDIA_ROOT
 from django.contrib.auth.forms import AuthenticationForm
 from imager_images.models import Photo, Album
 from django.contrib.auth.models import User
 from .settings import MEDIA_ROOT
 import os
+from django.contrib.auth.decorators import login_required
 
 
 def home_page(request):
@@ -31,21 +32,23 @@ def home_page(request):
     })
 
 
+@login_required(redirect_field_name='/')
 def library(request):
     """Set up library view."""
     photos = []
-    # try:
+    albums = []
     for photo in request.user.photos.all():
         photos.append(photo)
+    for album in request.user.albums.all():
+        albums.append(album)
+    return render(request, 'library.html', context={'photos': photos, 'albums': albums})
 
-    return render(request, 'library.html', context={'photos': photos})
 
-
+@login_required(redirect_field_name='/')
 def profile_view(request):
     """Set up profile view."""
     if request.user.is_authenticated():
         image_count = len(request.user.photos.all())
         album_count = len(request.user.albums.all())
         return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
-
 

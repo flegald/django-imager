@@ -149,3 +149,6 @@ class PhotosAlbum(TestCase):
         for photo in self.photos:
             self.assertIn(photo, self.album.photos.all())
             self.assertIn(photo, self.album2.photos.all())
+
+
+
