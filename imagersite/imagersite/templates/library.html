@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}
+    {{user.username}}'s Library
+{% endblock %}
+
+{% block content %}
+
+{% for photo in photos %}
+
+<img src="{{photo.img_file.url}}">
+
+{% endfor %}
+
+{% endblock %}
