@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block content %}
+<h1> {{ object.title }} </h1>
+
+{% for photo in object.photos.all %}
+    {% thumbnail photo.img_file 200x200 upscale as image %}
+    <a href='/images/photo/{{ photo.pk }}'>
+        <img src='{{ image.url }}'>
+    </a>
+{% endfor %}
+
+{% endblock %}
