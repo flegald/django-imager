@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from .settings import MEDIA_ROOT
 import os
 from django.contrib.auth.decorators import login_required
+from .form import NewAlbumForm, NewPhotoForm
 
 
 def home_page(request):
@@ -51,4 +52,36 @@ def profile_view(request):
         image_count = len(request.user.photos.all())
         album_count = len(request.user.albums.all())
         return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
+
+
+@login_required(redirect_field_name='/')
+def create_new_album(request):
+    if request.method == 'POST':
+        form = NewAlbumForm(request.POST)
+        form.clean()
+        album = Album(title=form.data['title'], description=form.data['description'])
+        album.save()
+        request.user.albums.add(album)
+        return redirect('/images/library/')
+    elif request.method == 'GET':
+        new_album_form = NewAlbumForm()
+        return render(request, 'newalbum.html', context={
+            'new_album_form': new_album_form
+    })
+
+
+@login_required(redirect_field_name='/')
+def upload_new_photo(request):
+    if request.method == 'GET':
+        new_photo_form = NewPhotoForm()
+        return render(request, 'newphoto.html', context={
+            'new_photo_form': new_photo_form
+        })
+    elif request.method == 'POST':
+        new_photo = NewPhotoForm(request.POST, request.FILES)
+        # new_photo.clean()
+        photo = Photo(title=new_photo.data['title'], description=new_photo.data['description'], img_file=new_photo.data['img_file'])
+        photo.save()
+        request.user.photos.add(photo)
+        return redirect('/images/library/')
 

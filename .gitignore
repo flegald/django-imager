@@ -62,3 +62,7 @@ target/
 .ipynb_checkpoints
 
 imagersite/static/*
+
+imagersite/media/*
+
+.DS_Store

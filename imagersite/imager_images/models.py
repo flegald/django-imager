@@ -13,7 +13,8 @@ class Photo(md.Model):
     """Single image model."""
 
     owner = md.ForeignKey(settings.AUTH_USER_MODEL,
-                            related_name='photos')
+                            related_name='photos',
+                            null=True)
     title = md.CharField(default='', max_length=255)
     description = md.CharField(default='', max_length=255)
     date_uploaded = md.DateTimeField(auto_now_add=True)
