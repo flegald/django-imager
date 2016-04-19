@@ -13,6 +13,7 @@ from .settings import MEDIA_ROOT
 from django.contrib.auth.forms import AuthenticationForm
 from imager_images.models import Photo, Album
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 def home_page(request):
@@ -29,6 +30,7 @@ def home_page(request):
     })
 
 
+@login_required(redirect_field_name='/')
 def library(request):
     """Set up library view."""
     photos = []
@@ -40,6 +42,7 @@ def library(request):
     return render(request, 'library.html', context={'photos': photos, 'albums': albums})
 
 
+@login_required(redirect_field_name='/')
 def profile_view(request):
     """Set up profile view."""
     if request.user.is_authenticated():

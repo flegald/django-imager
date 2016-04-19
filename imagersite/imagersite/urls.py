@@ -15,24 +15,27 @@ Including another URLconf
 """
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from django.views.generic import DetailView
 from .views import home_page, profile_view, library
-from imager_images.models import Album, Photo
 import settings
+from django.views.generic import DetailView
+from imager_images.models import Photo, Album
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name='home_page'),
+
+    # Account urls
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/profile$', profile_view, name='profile_view'),
-    url(r'^images/library/$', library, name='library'),
 
+    # Image urls
+    url(r'^images/library/$', library, name='library'),
     url(r'^images/album/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=Album, template_name="detail_album.html")),
     url(r'^images/photo/(?P<pk>[0-9]+)/$',
-        DetailView.as_view(model=Photo, template_name="detail_photo.html")),
-    ]
+        DetailView.as_view(model=Photo, template_name="detail_photo.html"))
+]
 
 if settings.DEBUG:
     urlpatterns += patterns('',
