@@ -74,6 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'imagersite.wsgi.application'
 
+# import dj_databse_url
+
+# DATABASES = {'default']: dj_databse_url.config(conn_max_age=600)}
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
