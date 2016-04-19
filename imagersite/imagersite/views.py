@@ -79,8 +79,9 @@ def upload_new_photo(request):
         })
     elif request.method == 'POST':
         new_photo = NewPhotoForm(request.POST, request.FILES)
+
         # new_photo.clean()
-        photo = Photo(title=new_photo.data['title'], description=new_photo.data['description'], img_file=new_photo.data['img_file'])
+        photo = Photo(title=new_photo.data['title'], description=new_photo.data['description'], img_file=request.FILES['img_file'])
         photo.save()
         request.user.photos.add(photo)
         return redirect('/images/library/')
