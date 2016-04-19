@@ -30,7 +30,7 @@ class Photo(md.Model):
 
     def get_url(self):
         """Return string of url for single view."""
-        return '/images/photo/{}/'.format(self.pk)
+        return 'media/{}'.format(self.img_file)
 
 
 @python_2_unicode_compatible

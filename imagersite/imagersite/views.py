@@ -13,6 +13,8 @@ from registration.backends.hmac.views import RegistrationView
 from django.contrib.auth.forms import AuthenticationForm
 from imager_images.models import Photo, Album
 from django.contrib.auth.models import User
+from .settings import MEDIA_ROOT
+import os
 
 
 def home_page(request):
@@ -29,15 +31,14 @@ def home_page(request):
     })
 
 
-# def library(request):
-#     """Set up library view."""
-#     albums = []
-#     try:
-#         for album in request.user.albums.all():
-#             albums.append(album.cover.url[1:])
-#     except:
-#         albums = "You have no albums."
-#     return render(request, 'library.html', context={'albums': albums})
+def library(request):
+    """Set up library view."""
+    photos = []
+    # try:
+    for photo in request.user.photos.all():
+        photos.append(photo)
+
+    return render(request, 'library.html', context={'photos': photos})
 
 
 def profile_view(request):
@@ -46,12 +47,5 @@ def profile_view(request):
         image_count = len(request.user.photos.all())
         album_count = len(request.user.albums.all())
         return render(request, 'profile_view.html', context={'image_count': image_count, 'album_count': album_count})
-
-
-def library(request):
-    albums = []
-    for album in request.user.albums.all():
-        albums.append(album.cover.url[1:])
-    return render(request, 'images/library.html', context={'albums': albums})
 
 

@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/Users/mac/p401/Flegal/django-imager/imagersite/media'
 MEDIA_URL = '/media/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
