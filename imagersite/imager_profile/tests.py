@@ -14,20 +14,25 @@ class TestProfile(TestCase):
         self.test1.save()
         self.test2.save()
 
+
+# ******
     def test_verify_save(self):
         """Test that IP are saving with User object."""
         self.assertEquals(len(ImagerProfile.objects.all()), 2)
 
+# ******* index error
     def test_verify_profile(self):
         """Very profiles are saved to correct users."""
         self.assertEquals(ImagerProfile.objects.all()[0], self.test1.profile)
 
+# *******
     def test_user_deletion(self):
         """Test when user is deleted so is profile."""
         self.assertEquals(len(ImagerProfile.objects.all()), 2)
         self.test1.delete()
         self.assertEquals(len(ImagerProfile.objects.all()), 1)
 
+# ******
     def test_profile_deletion(self):
         """Test when profile is deleted user still exists."""
         self.assertEquals(len(User.objects.all()), 2)
