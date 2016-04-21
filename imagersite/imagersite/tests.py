@@ -86,12 +86,6 @@ class Registration(TestCase):
         """Check after good registration is redirect to home."""
         self.assertEquals('/accounts/register/', self.good_register.request['PATH_INFO'])
 
-    # def test_email_sent(self):
-    #     """Check that registration email was sent."""
-    #     import pdb
-
-    #     self.assertTrue(mail.outbox[0])
-
 
 class Authenticated(TestCase):
     """Test with authenticated user."""
@@ -138,12 +132,5 @@ class Authenticated(TestCase):
     def test_good_login(self):
         """Test login works with correct info."""
         self.assertEquals(self.login.status_code, 200)
-
-    # def test_fir_request_dot_user(self):
-    #     """Check for request.user on authntication."""
-    #     login_info = {'username': GOOD_REGISTER['username'],
-    #                   'password': GOOD_REGISTER['password1']}
-    #     user = self.client.post(LOGIN, login_info, follow=True)
-    #     self.assertFalse(reponse.user.username == 'Anonymous')
 
 
