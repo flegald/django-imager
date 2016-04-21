@@ -13,9 +13,47 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include, patterns
+from django.views.generic import TemplateView, DetailView
+from .views import home_page, profile_view, library
+from imager_images.models import Album, Photo
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import home_page, profile_view, library
+import settings
 from django.contrib import admin
+from django.views.generic import DetailView
+from imager_images.models import Photo, Album
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', home_page, name='home_page'),
+
+    # Account urls
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/profile', profile_view, name='profile_view'),
+    # Image urls
+    url(r'^images/library/$', library, name='library'),
+    url(r'^images/album/(?P<pk>[0-9]+)/$',
+        DetailView.as_view(model=Album, template_name="detail_album.html")),
+    url(r'^images/photo/(?P<pk>[0-9]+)/$',
+        DetailView.as_view(model=Photo, template_name="detail_photo.html"))
 ]
+
+
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,
+#                           document_root=settings.MEDIA_ROOT)
+
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL,
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$',
+            'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT, }),
+    )
