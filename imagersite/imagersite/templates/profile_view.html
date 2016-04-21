@@ -1,24 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-4">
-<h2>Welcome {{user.username}}!</h2>
-<ul>
-    <li>Name: {{user.firstname}} {{user.lastname}}</li>
-    <li>Location: {{user.location}}</li>
-    <li>Camera: {{user.camera_type}}</li>
-    <li>Photos Uploaded: {{user.photos.count}}
-    <li>Albums Created: {{user.albums.count}}
-</ul>
-</div>
-  <div class="col-md-3"></div>
-</div>
-    <a href="/images/library">Library |</a>
 
-    <a href='/images/album/add/'> Add New Album | </a>
-    <a href='/images/photos/add/'> Upload New Photo</a>
-</div>
+<div id="features-wrapper">
+          <section id="features" class="container">
+            <h2><strong>{{user.username}}</strong>'s Page!</h2>
+            <div>
+               <ul>
+                <p>Name: {{user.firstname}} {{user.lastname}} | </p>
+                <p>Location: {{user.location}} | </p>
+                <p>Camera: {{user.camera_type}} | </p>
+                <p>Photos Uploaded: {{user.photos.count}} | </p>
+                <p>Albums Created: {{user.albums.count}} </p>
+              </ul>
+            </div>
+
+            <div class="row">
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="/profile/edit/" class="image featured"><img src="/media/img_files/profile_pic.jpg" width=150px/></a>
+                    <header>
+                      <h3>Edit user info</h3>
+                    </header>
+                   </section>
+              </div>
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="'/images/album/add/'" class="image featured"><img src="/media/img_files/upload.png" width=150px/></a>
+                    <header>
+                      <h3>Add new albums</h3>
+                    </header>
+                  </section>
+
+              </div>
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="/images/photos/add/" class="image featured"><img src="/media/img_files/upload.png" width=150px/></a>
+                    <header>
+                      <h3>Upload new photos</h3>
+                    </header>
+                  </section>
+
+              </div>
+            </div>
+            <ul class="actions">
+              <p><a href="/images/library" class="button icon fa-file">Take me to <strong>libraries</strong></a></p>
+            </ul>
+          </section>
+        </div>
 {% endblock %}

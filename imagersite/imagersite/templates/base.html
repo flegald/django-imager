@@ -22,28 +22,19 @@
 
             <!-- Nav -->
               <nav id="nav">
+                {% if user.is_authenticated %}
                 <ul>
+                  <li><a class="icon fa-home" href="/accounts/logout/"><span>Logout</span></a></li>
+                  <li><a href="/accounts/profile"><span>Profile</span></a></li>
+                  <li><a class="icon fa-home" href="/"><span>Home</span></a></li>
+
+                  {% else %}
+
                   <li><a class="icon fa-home" href="/accounts/login/"><span>Login</span></a></li>
-                  <!-- <li>
-                    <a href="#" class="icon fa-bar-chart-o"><span>Dropdown</span></a>
-                    <ul>
-                      <li><a href="#">Lorem ipsum dolor</a></li>
-                      <li><a href="#">Magna phasellus</a></li>
-                      <li><a href="#">Etiam dolore nisl</a></li>
-                      <li>
-                        <a href="#">Phasellus consequat</a>
-                        <ul>
-                          <li><a href="#">Magna phasellus</a></li>
-                          <li><a href="#">Etiam dolore nisl</a></li>
-                          <li><a href="#">Phasellus consequat</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Veroeros feugiat</a></li>
-                    </ul>
-                  </li> -->
                   <li><a class="icon fa-cog" href="/accounts/register"><span>Register</span></a></li>
                   <li><a class="icon fa-retweet" href="/"><span>Home</span></a></li>
                 </ul>
+                {% endif %}
               </nav>
               <div>
               {% block content %}
@@ -53,62 +44,56 @@
         </div>
 
       <!-- Features -->
-      {% if user.is_authenticated %}
+      <!-- {% if user.is_authenticated %}
         <div id="features-wrapper">
           <section id="features" class="container">
             <header>
-              <h2>Gentlemen, behold! This is <strong>Strongly Typed</strong>!</h2>
+              <h2><strong>Look</strong>! Libraries</h2>
             </header>
             <div class="row">
-              <div class="4u 12u(mobile)">
+              <div class="4u 12u(mobile)"> -->
 
                 <!-- Feature -->
-                  <section>
+                  <!-- <section>
                     <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
                     <header>
-                      <h3>Okay, so what is this?</h3>
+                      <h3>Album <strong>title</strong> goes here!</h3>
                     </header>
-                    <p>This is <strong>Strongly Typed</strong>, a free, fully responsive site template
-                    by <a href="http://html5up.net">HTML5 UP</a>. Free for personal and commercial use under the
-                    <a href="http://html5up.net/license">CCA 3.0 license</a>.</p>
+                    <p>Album <strong>description</strong> goes here!</p>
                   </section>
 
               </div>
-              <div class="4u 12u(mobile)">
+              <div class="4u 12u(mobile)"> -->
 
                 <!-- Feature -->
-                  <section>
+                  <!-- <section>
                     <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
                     <header>
-                      <h3>Nice! What is HTML5 UP?</h3>
+                      <h3>Album <strong>title</strong> goes here!</h3>
                     </header>
-                    <p><a href="http://html5up.net">HTML5 UP</a> is a side project of <a href="http://n33.co">AJ’s</a> (= me).
-                    I started it as a way to both test my <strong>skel</strong> framework and sharpen up my coding
-                    and design skills a bit.</p>
+                    <p>Album <strong>description</strong> goes here!</p>
                   </section>
 
               </div>
-              <div class="4u 12u(mobile)">
+              <div class="4u 12u(mobile)"> -->
 
                 <!-- Feature -->
-                  <section>
+                  <!-- <section>
                     <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
                     <header>
-                      <h3>Skel? What's that?</h3>
+                      <h3>Album <strong>title</strong> goes here!</h3>
                     </header>
-                    <p><strong>Skel</strong> is a lightweight framework for building responsive
-                    sites and apps. All of my stuff at <a href="http://html5up.net">HTML5 UP</a> (including this
-                    one) are built on this framework.</p>
+                    <p>Album <strong>description</strong> goes here!</p>
                   </section>
 
               </div>
             </div>
             <ul class="actions">
-              <li><a href="#" class="button icon fa-file">Tell Me More</a></li>
+              <li><a href="/accounts/profile" class="button icon fa-file">More</a></li>
             </ul>
           </section>
         </div>
-        {% endif %}
+        {% endif %} -->
 
 
     <!-- Scripts -->
@@ -122,47 +107,3 @@
 
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
- <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title></title>
-
-
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-   <link rel="stylesheet" href={% static "assets/css/main.css" %}/>
-   <noscript><link rel="stylesheet" href={% static "assets/css/noscript.css" %}/></noscript>
-
-   <title>
-   </title>
-
- </head>
- <body>
-   <header>
-      <nav id="nav">
-      {% if user.is_authenticated %}
-      <ul>
-        <span>{{ user.username }}<span> <a href="/accounts/logout/"><span>Log Out<span></a>
-        <li><a href='/accounts/profile'><span>Home</span></a></li>
-
-        {% else %}
-
-        <li><a href="/accounts/login/"><span>Log In</span></a></span></li>
-        <li><a href = '/accounts/register'><span>Register</span></a></li>
-        <li><a href = '/'><span>Home</span></a></li>
-      </ul>
-      {% endif %}
-      </nav>
-   </header>
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{% static "assets/js/jquery.min.js" %}"></script>
-    <script src="{% static "assets/js/skel.min.js" %}"></script>
-    <script src="{% static "assets/js/main.js" %}"></script>
- </body>
-</html> -->
