@@ -11,13 +11,18 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+<<<<<<< HEAD
 MEDIA_ROOT = os.environ['DJANGO_MEDIA']
+=======
+MEDIA_ROOT = os.environ["DJANGO_MEDIA"]
+>>>>>>> front-end-2
 MEDIA_URL = '/media/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -75,13 +80,13 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'djangoimager',
+        'NAME': 'djangoimager',
     }
 }
 
+if 'test' in sys.argv or 'test_coverage' in sys.argv: 
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
-# Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

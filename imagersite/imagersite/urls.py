@@ -20,6 +20,9 @@ from imager_images.models import Album, Photo
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile
+from .views import home_page, profile_view, library
+import settings
+from django.contrib import admin
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album
 from django.contrib import admin
@@ -32,6 +35,7 @@ urlpatterns = [
     # Account urls
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/profile', profile_view, name='profile_view'),
+    url(r'^profile/edit/$', edit_profile, name='profile_edit'),
     # Image urls
     url(r'^images/library/$', library, name='library'),
     url(r'^images/album/(?P<pk>[0-9]+)/$',
@@ -40,18 +44,7 @@ urlpatterns = [
         DetailView.as_view(model=Photo, template_name="detail_photo.html")),
     url(r'^images/album/add/$', create_new_album, name='newalbum'),
     url(r'^images/photos/add/$', upload_new_photo, name='newphoto'),
-    url(r'^profile/edit/$', edit_profile, name='profile_edit')
 ]
-
-
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,
-#                           document_root=settings.MEDIA_ROOT)
-
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.STATIC_URL,
 
 if settings.DEBUG:
     urlpatterns += patterns('',
