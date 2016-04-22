@@ -15,8 +15,8 @@ class Photo(md.Model):
     owner = md.ForeignKey(settings.AUTH_USER_MODEL,
                             related_name='photos',
                             null=True)
-    title = md.CharField(default='', max_length=255)
-    description = md.CharField(default='', max_length=255)
+    title = md.CharField(default='', max_length=255, null=True, blank=True)
+    description = md.CharField(default='', max_length=255, null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)
     date_modified = md.DateTimeField(auto_now_add=True)
     date_published = md.DateTimeField(auto_now_add=True)
@@ -44,8 +44,8 @@ class Album(md.Model):
     cover = md.ForeignKey('Photo', on_delete=md.CASCADE,
                           related_name='covered_albums', null=True,
                           default=None)
-    title = md.CharField(default='', max_length=255)
-    description = md.TextField(default='')
+    title = md.CharField(default='', max_length=255, null=True, blank=True)
+    description = md.TextField(default='', null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)
     date_modified = md.DateTimeField(auto_now=True)
     date_published = md.DateTimeField(auto_now_add=True)

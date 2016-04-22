@@ -14,7 +14,9 @@
 
         <h1> {{ object.title }} </h1>
         <img src='{{ object.img_file.url }}'/>
-
+        {% if user == object.owner %}
+        <p><a href="/images/photos/{{object.id}}/edit" class="button icon fa-file">Edit Photo</a></p>
+        {% endif %}
     {% endif %}
 
 {% endblock %}

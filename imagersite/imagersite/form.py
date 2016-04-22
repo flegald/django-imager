@@ -25,4 +25,10 @@ class EditProfileForm(ModelForm):
 class EditUserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']
+        fields = ['first_name', 'last_name', 'email']
+
+
+class EditPhotoForm(ModelForm):
+    class Meta:
+        model = Photo
+        fields = ['title', 'description']

@@ -7,9 +7,8 @@
             <h2><strong>{{user.username}}</strong>'s Page!</h2>
             <div>
                <ul>
-                <p>Name: {{user.firstname}} {{user.lastname}} | </p>
-                <p>Location: {{user.location}} | </p>
-                <p>Camera: {{user.camera_type}} | </p>
+                <p>Location: {{dbuser.profile.location}} | </p>
+                <p>Camera: {{dbuser.profile.camera}} | </p>
                 <p>Photos Uploaded: {{user.photos.count}} | </p>
                 <p>Albums Created: {{user.albums.count}} </p>
               </ul>

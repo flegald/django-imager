@@ -32,9 +32,9 @@ class ImagerProfile(md.Model):
                                 on_delete=md.CASCADE,
                                 related_name='profile',
                                 null=False)
-    location = md.CharField(default='', max_length=255)
-    bio = md.TextField(default='')
-    camera = md.TextField(default='', max_length=255)
+    location = md.CharField(default='', max_length=255, null=True, blank=True)
+    bio = md.TextField(default='', null=True, blank=True)
+    camera = md.TextField(default='', max_length=255, null=True, blank=True)
     friends = md.ManyToManyField(User,
                             related_name='friend_of')
     photography_type = md.CharField(max_length=255,
