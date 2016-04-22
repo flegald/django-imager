@@ -1,42 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
- <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title></title>
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>IamgeImager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  </head>
+  <body class="homepage">
+    <div id="page-wrapper">
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-   {% block css %}
-   {% endblock %}
-   <title>
-      {% block title %}
-      {% endblock %}
-   </title>
+      <!-- Header -->
+        <div id="header-wrapper">
+          <div id="header" class="container">
 
- </head>
- <body>
- <header>
-    {% if user.is_authenticated %}
+            <!-- Logo -->
+              <h1 id="logo"><a href="index.html">Imager</a></h1>
+              <p>Blah Blah Blah. Your photo hub. The Longer the better.</p>
 
-    {{ user.username }} | <a href="/accounts/logout/">Log Out</a>
-    <a href='/accounts/profile'>| Home</a>
+            <!-- Nav -->
+              <nav id="nav">
+                {% if user.is_authenticated %}
+                <ul>
+                  <li><a class="icon fa-home" href="/accounts/logout/"><span>Logout</span></a></li>
+                  <li><a href="/accounts/profile"><span>Profile</span></a></li>
+                  <li><a class="icon fa-home" href="/"><span>Home</span></a></li>
 
-    {% else %}
+                  {% else %}
 
-    <a href="/accounts/login/">Log In</a>
-    <a href = '/accounts/register'> | Register</a>
-    <a href = '/'> | Home</a>
+                  <li><a class="icon fa-home" href="/accounts/login/"><span>Login</span></a></li>
+                  <li><a class="icon fa-cog" href="/accounts/register"><span>Register</span></a></li>
+                  <li><a class="icon fa-retweet" href="/"><span>Home</span></a></li>
+                </ul>
+                {% endif %}
+              </nav>
+              <div>
+              {% block content %}
+              {% endblock %}
+              </div>
+          </div>
+        </div>
 
-    {% endif %}
 
- </header>
+    <!-- Scripts -->
+      <!-- <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.dropotron.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/skel-viewport.min.js"></script>
+      <script src="assets/js/util.js"></script> -->
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <!-- <script src="assets/js/main.js"></script> -->
 
- <article id='main'>
-   {% block content %}
-   {% endblock %}
- </article>
-
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- </body>
+  </body>
 </html>

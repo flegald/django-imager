@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile
 from .views import home_page, profile_view, library
-import settings
 from django.contrib import admin
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album

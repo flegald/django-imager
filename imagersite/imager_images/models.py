@@ -49,7 +49,7 @@ class Album(md.Model):
     date_uploaded = md.DateTimeField(auto_now_add=True)
     date_modified = md.DateTimeField(auto_now=True)
     date_published = md.DateTimeField(auto_now_add=True)
-    published = md.CharField(max_length=7, choices=PUB_CHOICE,
+    published = md.CharField(max_length=255, choices=PUB_CHOICE,
                                  default='Private')
 
 
