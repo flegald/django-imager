@@ -39,13 +39,7 @@ def home_page(request):
 def library(request):
     """Set up library view."""
     user = User.objects.get(pk=request.user.id)
-    photos = []
-    albums = []
-    for photo in user.photos.all():
-        photos.append(photo)
-    for album in user.albums.all():
-        albums.append(album)
-    return render(request, 'library.html', context={'photos': photos, 'albums': albums})
+    return render(request, 'library.html', context={'photos': user.photos.all(), 'albums': user.albums.all()})
 
 
 @login_required(redirect_field_name='/')
@@ -60,10 +54,10 @@ def profile_view(request):
 
 @login_required(redirect_field_name='/')
 def create_new_album(request):
+    """Create new album."""
     user = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
         form = NewAlbumForm(request.POST)
-        form.clean()
         album = Album(title=form.data['title'], description=form.data['description'])
         album.save()
         user.albums.add(album)
@@ -77,6 +71,7 @@ def create_new_album(request):
 
 @login_required(redirect_field_name='/')
 def upload_new_photo(request):
+    """Upload new photo."""
     user = User.objects.get(pk=request.user.id)
     if request.method == 'GET':
         new_photo_form = NewPhotoForm()
@@ -85,7 +80,6 @@ def upload_new_photo(request):
         })
     elif request.method == 'POST':
         new_photo = NewPhotoForm(request.POST, request.FILES)
-        # new_photo.clean()
         photo = Photo(title=new_photo.data['title'], description=new_photo.data['description'], img_file=request.FILES['img_file'])
         photo.save()
         user.photos.add(photo)
