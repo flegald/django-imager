@@ -43,7 +43,7 @@ class Album(md.Model):
                               on_delete=md.CASCADE,
                               related_name='albums',
                               null=True)
-    cover = md.ImageField(default=u'media/img_files/pupp1.jpg')
+    cover = md.ImageField(default='media/img_files/puppy1.jpg')
     title = md.CharField(default='', max_length=255, null=True, blank=True)
     description = md.TextField(default='', null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)

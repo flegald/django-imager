@@ -63,7 +63,7 @@ def create_new_album(request):
     user = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
         form = NewAlbumForm(request.POST)
-        form.clean()
+        # form.clean()
         album = Album(title=form.data['title'], description=form.data['description'])
         album.save()
         user.albums.add(album)
