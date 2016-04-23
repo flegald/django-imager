@@ -19,12 +19,14 @@ from .views import home_page, profile_view, library
 from imager_images.models import Album, Photo
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile, edit_photo
+from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile, Edit_Photo
 from .views import home_page, profile_view, library
 from django.contrib import admin
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
+
 
 
 urlpatterns = [
@@ -43,7 +45,8 @@ urlpatterns = [
         DetailView.as_view(model=Photo, template_name="detail_photo.html")),
     url(r'^images/album/add/$', create_new_album, name='newalbum'),
     url(r'^images/photos/add/$', upload_new_photo, name='newphoto'),
-    url(r'^images/photos/(?P<pk>[0-9]+)/edit/$', edit_photo, name='editphoto')
+    url(r'^images/photos/(?P<pk>[0-9]+)/edit/$',
+        login_required(Edit_Photo.as_view()), name='editphoto')
 ]
 
 if settings.DEBUG:

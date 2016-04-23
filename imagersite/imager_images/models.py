@@ -14,7 +14,7 @@ class Photo(md.Model):
 
     owner = md.ForeignKey(settings.AUTH_USER_MODEL,
                             related_name='photos',
-                            null=True)
+                            null=True, blank=True)
     title = md.CharField(default='', max_length=255, null=True, blank=True)
     description = md.CharField(default='', max_length=255, null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)
@@ -34,16 +34,16 @@ class Photo(md.Model):
         return 'media/{}'.format(self.img_file)
 
 
+
 @python_2_unicode_compatible
 class Album(md.Model):
     """Album to house images."""
+
     owner = md.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=md.CASCADE,
                               related_name='albums',
                               null=True)
-    cover = md.ForeignKey('Photo', on_delete=md.CASCADE,
-                          related_name='covered_albums', null=True,
-                          default=None)
+    cover = md.ImageField(default=u'media/img_files/pupp1.jpg')
     title = md.CharField(default='', max_length=255, null=True, blank=True)
     description = md.TextField(default='', null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)

@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "imagersite/base.html" %}
 
 {% block content %}
 <div class="container">
 <h2>Photo Edit</h2>
 <form action="" method="post">
     {% csrf_token %}
-    {{ photo_edit }}
+    {{ form }}
     <input type="submit" value="Save" />
 </form>
 </div>

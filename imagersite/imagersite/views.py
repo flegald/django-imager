@@ -15,8 +15,9 @@ from imager_images.models import Photo, Album
 from imager_profile.models import ImagerProfile
 from django.contrib.auth.models import User
 from .settings import MEDIA_ROOT
-import os
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
+import datetime
 from .form import NewAlbumForm, NewPhotoForm, EditProfileForm, EditUserForm, EditPhotoForm
 
 
@@ -107,11 +108,17 @@ def edit_profile(request):
         return render(request, 'profile_edit.html', context={'profile_edit':profile_edit, 'user_edit': user_edit})
 
 
-@login_required(redirect_field_name='/')
-def edit_photo(request):
-    if request.method == 'POST':
-        pass
-    elif request.method == 'GET':
-        edit_form = EditPhotoForm()
-        return render(request, 'photo_edit.html', context={'edit_form': edit_form})
+class Edit_Photo(UpdateView):
+    """A form to edit photos."""
+
+    model = Photo
+    fields = ['title', 'description', 'published']
+    template_name = 'photo_update_form.html'
+    success_url = '/images/library/'
+
+    def form_valid(self, form):
+        """Validate form."""
+
+        form.instance.date_modified = datetime.datetime.now()
+        return super(Edit_Photo, self).form_valid(form)
 
