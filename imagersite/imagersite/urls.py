@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include, patterns
 from django.views.generic import TemplateView, DetailView
-from .views import home_page, profile_view, library
+from .views import home_page, library
 from imager_images.models import Album, Photo
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile, Edit_Photo
-from .views import home_page, profile_view, library
+from imager_images.views import create_new_album, upload_new_photo, Edit_Photo
+from imager_profile.views import edit_profile, profile_view
 from django.contrib import admin
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album
