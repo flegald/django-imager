@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="features-wrapper">
+          <section id="features" class="container">
+            <h2><strong>{{user.username}}</strong>'s Page!</h2>
+            <div>
+               <ul>
+                <p>Location: {{dbuser.profile.location}} | </p>
+                <p>Camera: {{dbuser.profile.camera}} | </p>
+                <p>Photos Uploaded: {{user.photos.count}} | </p>
+                <p>Albums Created: {{user.albums.count}} </p>
+              </ul>
+            </div>
+
+            <div class="row">
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="/profile/edit/" class="image featured"><img src="/media/img_files/profile_pic.jpg" /></a>
+                    <header>
+                      <h3>Edit user info</h3>
+                    </header>
+                   </section>
+              </div>
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="/images/album/add/" class="image featured"><img src="/media/img_files/upload.png" /></a>
+                    <header>
+                      <h3>Add new albums</h3>
+                    </header>
+                  </section>
+
+              </div>
+              <div class="4u 12u(mobile)">
+
+                <!-- Feature -->
+                  <section>
+                    <a href="/images/photos/add/" class="image featured"><img src="/media/img_files/upload.png" /></a>
+                    <header>
+                      <h3>Upload new photos</h3>
+                    </header>
+                  </section>
+
+              </div>
+            </div>
+            <ul class="actions">
+              <p><a href="/images/library" class="button icon fa-file">Take me to <strong>libraries</strong></a></p>
+            </ul>
+          </section>
+        </div>
+{% endblock %}

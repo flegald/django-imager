@@ -1,0 +1,112 @@
+[
+  {
+    "model": "imagersite.User",
+    "pk": 1,
+    "fields": {
+      "username" : "JL001",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "email" : john@gmail.com,
+      "password": "password1",
+      "is_active": True,
+      "date_joined": "04-17-2016"
+    }
+  },
+  {
+    "model": "myapp.person",
+    "pk": 2,
+    "fields": {
+      "username" : "JL002",
+      "first_name": "Jess",
+      "last_name": "Lennon",
+      "email" : jess@gmail.com,
+      "password": "password2",
+      "is_active": True,
+      "date_joined": "04-17-2016"
+    }
+  },
+  {
+    "model": "imagersite.User",
+    "pk": 3,
+    "fields": {
+      "username": "JL003",
+      "first_name": "Joe",
+      "last_name": "Lennon",
+      "email": joe@gmail.com,
+      "password": "password3",
+      "is_active": True,
+      "date_joined": "04-17-2016"
+    }
+  },
+  {
+    "model": "imager_profile.ImagerProfile",
+    "pk": 1,
+    "fields": {
+      "user": 1
+      "location": "SEA",
+      "bio": "Coming soon.",
+      "camera": "Unknown",
+      "photography_type": "Nature"
+    }
+  },
+  {
+    "model": "imager_profile.ImagerProfile",
+    "pk": 1,
+    "fields": {
+      "user": 2
+      "location": "SEA",
+      "bio": "Coming soon.",
+      "camera": "Unknown",
+      "photography_type": "Animal"
+    }
+  },
+  {
+    "model": "imager_profile.ImagerProfile",
+    "pk": 1,
+    "fields": {
+      "user": 3
+      "location": "SEA",
+      "bio": "Coming soon.",
+      "camera": "Unknown",
+      "photography_type": "People"
+    }
+  },
+  {
+    "model": "imager_images.Photo",
+    "pk": 1,
+    "fields": {
+      "title": "untitled",
+      "description": "N/A",
+      "date_uploaded": "04-17-2016",
+      "published": "Public",
+      "owner_id": 1,
+       "img_file": "img_file/001.jpg"
+    }
+  },
+  {
+    "model": "imager_images.Photo",
+    "pk": 1,
+    "fields": {
+      "title": "untitled",
+      "description": "N/A",
+      "date_uploaded": "04-17-2016",
+      "published": "Public",
+      "owner_id": 2,
+       "img_file": "img_file/002.jpg"
+    }
+  },
+  {
+    "model": "imager_images.Photo",
+    "pk": 1,
+    "fields": {
+      "title": "untitled",
+      "description": "N/A",
+      "date_uploaded": "04-17-2016",
+      "published": "Public",
+      "owner_id": 3,
+      "img_file": "img_file/003.jpg"
+    }
+  },
+]
+
+
