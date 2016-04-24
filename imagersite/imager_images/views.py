@@ -65,4 +65,4 @@ class Edit_Album(UpdateView):
     def form_valid(self, form):
         """Validate form."""
         form.instance.date_modified = datetime.datetime.now()
-        return super(Edit_Ablum, self).form_valid(form)
+        return super(Edit_Album, self).form_valid(form)
