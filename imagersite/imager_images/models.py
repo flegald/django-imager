@@ -2,6 +2,9 @@
 from django.db import models as md
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 PUB_CHOICE = [('Private', 'Private'),
@@ -43,7 +46,7 @@ class Album(md.Model):
                               on_delete=md.CASCADE,
                               related_name='albums',
                               null=True)
-    cover = md.ImageField(default='media/img_files/puppy1.jpg')
+    cover = md.ImageField(default='img_files/upload.png')
     title = md.CharField(default='', max_length=255, null=True, blank=True)
     description = md.TextField(default='', null=True, blank=True)
     date_uploaded = md.DateTimeField(auto_now_add=True)
