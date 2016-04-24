@@ -2,23 +2,10 @@
 """Views handler."""
 
 from __future__ import unicode_literals
-from django.http import HttpResponse
-from django.template import loader
-from django.shortcuts import render, render_to_response, redirect
-from django.views.generic import TemplateView
-from registration.forms import RegistrationForm
-from django.contrib.auth import authenticate, login
-from registration.backends.hmac.views import RegistrationView
-from .settings import MEDIA_ROOT
-from django.contrib.auth.forms import AuthenticationForm
-from imager_images.models import Photo, Album
-from imager_profile.models import ImagerProfile
-from django.contrib.auth.models import User
-from .settings import MEDIA_ROOT
-from django.views.generic.edit import UpdateView
+from django.shortcuts import render
+from imager_images.models import Photo
 from django.contrib.auth.decorators import login_required
-import datetime
-from .form import NewAlbumForm, NewPhotoForm, EditProfileForm, EditUserForm, EditPhotoForm
+from django.contrib.auth.models import User
 
 
 def home_page(request):
@@ -39,6 +26,7 @@ def home_page(request):
 def library(request):
     """Set up library view."""
     user = User.objects.get(pk=request.user.id)
+<<<<<<< HEAD
     photos = []
     albums = []
     for photo in user.photos.all():
@@ -121,4 +109,7 @@ class Edit_Photo(UpdateView):
 
         form.instance.date_modified = datetime.datetime.now()
         return super(Edit_Photo, self).form_valid(form)
+=======
+    return render(request, 'library.html', context={'photos': user.photos.all(), 'albums': user.albums.all()})
+>>>>>>> 702b4bb9f5eac3b966283c8aa6d3bb65dd5ef7fd
 

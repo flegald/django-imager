@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include, patterns
 from django.views.generic import TemplateView, DetailView
-from .views import home_page, profile_view, library
+from .views import home_page, library
 from imager_images.models import Album, Photo
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home_page, profile_view, library, create_new_album, upload_new_photo, edit_profile, Edit_Photo
-from .views import home_page, profile_view, library
+from imager_images.views import create_new_album, Upload_Photo, Edit_Photo, Edit_Album
+from imager_profile.views import edit_profile, profile_view
 from django.contrib import admin
 from django.views.generic import DetailView
 from imager_images.models import Photo, Album
@@ -44,9 +44,12 @@ urlpatterns = [
     url(r'^images/photo/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=Photo, template_name="detail_photo.html")),
     url(r'^images/album/add/$', create_new_album, name='newalbum'),
-    url(r'^images/photos/add/$', upload_new_photo, name='newphoto'),
+    url(r'^images/photos/add/$',
+        login_required(Upload_Photo.as_view()), name='newphoto'),
     url(r'^images/photos/(?P<pk>[0-9]+)/edit/$',
-        login_required(Edit_Photo.as_view()), name='editphoto')
+        login_required(Edit_Photo.as_view()), name='editphoto'),
+    url(r'^images/album/(?P<pk>[0-9]+)/edit/$',
+        login_required(Edit_Album.as_view()), name='editalbum')
 ]
 
 if settings.DEBUG:

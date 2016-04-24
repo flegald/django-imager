@@ -9,7 +9,7 @@
 <h2>Albums</h2>
     {% for album in albums %}
         <h3>{{album.title}}</h3>
-        {% thumbnail album.cover.img_file 200x200 upscale as cover %}
+        {% thumbnail album.cover 200x200 upscale as cover %}
         <a href='/images/album/{{ album.pk }}'>
             <img src='{{ cover.url }}'>
         </a>
