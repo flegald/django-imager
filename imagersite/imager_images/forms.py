@@ -13,10 +13,5 @@ class NewAlbumForm(ModelForm):
 class NewPhotoForm(ModelForm):
     class Meta:
         model = Photo
-        fields = ['title', 'description', 'img_file']
+        fields = ['title', 'description', 'img_file', 'in_album']
 
-
-class EditPhotoForm(ModelForm):
-    class Meta:
-        model = Photo
-        fields = ['title', 'description', 'in_album']

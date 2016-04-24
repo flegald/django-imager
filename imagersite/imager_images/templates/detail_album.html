@@ -15,7 +15,9 @@
     {% else %}
 
         <h1> {{ object.title }} </h1>
-
+        {% if user == object.owner %}
+            <p><a href="/images/album/{{object.id}}/edit" class="button icon fa-file">Edit Album</a></p>
+        {% endif %}
         {% for photo in object.photos.all %}
             {% thumbnail photo.img_file 200x200 upscale as image %}
             <a href='/images/photo/{{ photo.pk }}'>
