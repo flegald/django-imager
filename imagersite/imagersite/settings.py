@@ -25,7 +25,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'ebsi0224m&dps8j01i%rc^(6_g($)2r@ji&onnz_(m=1j-23g%'
 
 # Application definition
 
