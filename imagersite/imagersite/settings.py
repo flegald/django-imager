@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images',
     'easy_thumbnails',
-    'imager_profile'
 ]
 
 MIDDLEWARE_CLASSES = [
