@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import sys
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images',
-    'easy_thumbnails'
+    'easy_thumbnails',
+    'imager_profile'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -74,19 +75,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'imagersite.wsgi.application'
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'))
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django-3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'django-3',
 
-if 'test' in sys.argv or 'test_coverage' in sys.argv: 
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+#     }
+# }
+
+# if 'test' in sys.argv or 'test_coverage' in sys.argv:
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -120,9 +126,9 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-52-11-208-74.us-west-2.compute.amazonaws.com', 'localhost']
 
 # Registration limit
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -133,3 +139,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #Login Redirect
 LOGIN_REDIRECT_URL = '/accounts/profile'
 
+#Email Production
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
