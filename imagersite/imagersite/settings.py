@@ -125,7 +125,7 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ec2-52-11-208-74.us-west-2.compute.amazonaws.com', 'localhost']
 
