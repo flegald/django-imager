@@ -75,8 +75,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'imagersite.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'))
+    }
 }
 
 # Database
