@@ -16,7 +16,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/Users/mac/p401/Flegal/django-imager/imagersite/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
