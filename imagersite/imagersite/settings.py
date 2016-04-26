@@ -16,10 +16,10 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/mac/p401/Flegal/django-imager/imagersite/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -126,7 +126,7 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ec2-52-11-208-74.us-west-2.compute.amazonaws.com', 'localhost']
 
@@ -142,7 +142,7 @@ LOGIN_REDIRECT_URL = '/accounts/profile'
 #Email Production
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'Smtp.mail.yahoo.com'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
