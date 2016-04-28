@@ -11,15 +11,16 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import sys
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -74,19 +75,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'imagersite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django-3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'))
 }
-
-if 'test' in sys.argv or 'test_coverage' in sys.argv: 
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -120,15 +115,25 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-191-95-202.us-west-2.compute.amazonaws.com']
 
 # Registration limit
 ACCOUNT_ACTIVATION_DAYS = 7
 
-# Email Services
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # Email Services
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email: PRODUCTION
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
 
 #Login Redirect
 LOGIN_REDIRECT_URL = '/accounts/profile'

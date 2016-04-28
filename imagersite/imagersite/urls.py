@@ -50,7 +50,7 @@ urlpatterns = [
         login_required(Edit_Photo.as_view()), name='editphoto'),
     url(r'^images/album/(?P<pk>[0-9]+)/edit/$',
         login_required(Edit_Album.as_view()), name='editalbum')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += patterns('',
