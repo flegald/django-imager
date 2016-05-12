@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'imagersite',
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images',
-    'easy_thumbnails'
+    'easy_thumbnails',
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -91,6 +93,12 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

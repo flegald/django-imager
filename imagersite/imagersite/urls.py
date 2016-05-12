@@ -23,7 +23,9 @@ from imager_images.views import create_new_album, upload_new_photo, Edit_Photo, 
 from imager_profile.views import edit_profile, profile_view
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
 
 
 urlpatterns = [
@@ -45,7 +47,12 @@ urlpatterns = [
     url(r'^images/photos/(?P<pk>[0-9]+)/edit/$',
         login_required(Edit_Photo.as_view()), name='editphoto'),
     url(r'^images/album/(?P<pk>[0-9]+)/edit/$',
-        login_required(Edit_Album.as_view()), name='editalbum')
+        login_required(Edit_Album.as_view()), name='editalbum'),
+    # API URls
+    url(r'^api/v1/', include('api.urls', namespace='imager_api')),
+    url(r'^api-auth/', include(
+        'rest_framework.urls',
+        namespace='rest_framework'))
 ]
 
 if settings.DEBUG:

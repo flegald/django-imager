@@ -67,3 +67,10 @@ target/
 imagersite/media/img_files/*
 
 secrets.sh
+man/man1/nosetests.1
+share/man/man1/ipython.1.gz
+
+/bin/*
+/include/*
+pip-selfcheck.json
+.DS_Store
