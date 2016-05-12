@@ -15,22 +15,16 @@
         {% if user == object.owner %}
             <section>
                 <ul class="actions">
-                <p><a href="/images/album/{{object.id}}/edit" class="button icon fa-file"> Wanna Edit Album</a></p>
+                <p><a href="/images/album/{{object.id}}/edit" class="button icon fa-file">Edit Album</a></p>
             </section>
         {% endif %}
         {% for photo in object.photos.all %}
             {% thumbnail photo.img_file 200x200 upscale as image %}
             <section>
                     <a href='/images/photo/{{ photo.pk }}'><img src='{{ image.url }}'></a>
-                    <!-- <p><a href="/images/photos/add" >set as album cover</a></p> -->
-
             <section>
         {% endfor %}
-            <section>
-                    <ul class="actions">
-                    <p><a href="/images/photos/add" class="button icon fa-file">Upload new photo</a></p>
-                    </ul>
-             </section>
+
 
     {% endif %}
 {% endblock %}
